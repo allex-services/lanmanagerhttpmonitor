@@ -1,0 +1,21 @@
+{
+  "name": "allex_lanmanagerhttpmonitorservice",
+  "version": "1.0.0",
+  "description": "LanManagerHttpMonitorService",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url" : "git@github.com:allex-services/lanmanagerhttpmonitor.git"
+  },
+  "keywords": [
+    "ecosystem:allex",
+    "Service",
+    "LanManagerHttpMonitor"
+  ],
+  "author": "Andrija Petrovic <andrija.hers@gmail.com>",
+  "license": "ISC"
+}
+
