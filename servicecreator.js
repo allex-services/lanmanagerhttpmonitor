@@ -40,21 +40,23 @@ function createLanManagerHttpMonitorService(execlib, ParentService) {
     if (!this.lanmanager) {
       return [];
     }
-    ret = this.lanmanager.needsTable.map(picker);
+    ret = this.lanmanager.needsTable.map(picker.bind(null, 'pending'));
     this.lanmanager.servicesTable.reduce(serviceadder, ret);
     return ret;
   };
 
   function pending (item) {
-    return item && !item.ipaddress;
+    return item && item.status==='pending';
   }
 
   function running (item) {
-    return item && item.ipaddress;
+    return item && item.item.status==='running';
   }
 
-  function picker (need) {
-    return lib.pick(need, ['instancename', 'modulename', 'propertyhash', 'ipaddress', 'wsport']);
+  function picker (status, need) {
+    var ret = lib.pick(need, ['instancename', 'modulename', 'propertyhash', 'ipaddress', 'wsport']);
+    ret.status = status;
+    return ret;
   }
 
   function serviceadder (result, service) {
@@ -62,12 +64,12 @@ function createLanManagerHttpMonitorService(execlib, ParentService) {
     for (i=0; i<result.length && !found; i++) {
       s = result[i];
       if (s.instancename === service.instancename) {
-        result[i] = picker(service);
+        result[i] = picker('running', service);
         found = true;
       }
     }
     if (!found) {
-      result.push(picker(service));
+      result.push(picker('running', service));
     }
     return result;
   }
