@@ -50,7 +50,7 @@ function createLanManagerHttpMonitorService(execlib, ParentService) {
   }
 
   function running (item) {
-    return item && item.item.status==='running';
+    return item && item.status==='running';
   }
 
   function picker (status, need) {
