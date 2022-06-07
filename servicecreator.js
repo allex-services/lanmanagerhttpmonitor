@@ -24,15 +24,15 @@ function createLanManagerHttpMonitorService(execlib, ParentService) {
   };
 
   LanManagerHttpMonitorService.prototype.running = function (url, req, res) {
-    res.end(JSON.stringify(this.allLanManagerServices().filter(running)));
+    res.end(JSON.stringify(this.allLanManagerServices().filter(running), null, 2));
   };
 
   LanManagerHttpMonitorService.prototype.pending = function (url, req, res) {
-    res.end(JSON.stringify(this.allLanManagerServices().filter(pending)));
+    res.end(JSON.stringify(this.allLanManagerServices().filter(pending), null, 2));
   };
 
   LanManagerHttpMonitorService.prototype.servicestatus = function (url, req, res) {
-    res.end(JSON.stringify(this.allLanManagerServices()));
+    res.end(JSON.stringify(this.allLanManagerServices(), null, 2));
   };
 
   LanManagerHttpMonitorService.prototype.allLanManagerServices = function () {
